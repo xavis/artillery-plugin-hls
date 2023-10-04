@@ -23,7 +23,7 @@ function download(concurrency, resources, throttle, events, callback) {
     concurrency,
     function(item, done) {
       var options = {
-        uri: item.uri,
+        uri: item.uri.replace(/\\/g, "/").replace(/%3F/g, "?").replace(/%26/g, "&").replace(".net//", ".net/").replace(".com//", ".com/").replace(".es//", ".es/"),
         timeout: 60 * 1000, // 60 seconds timeout
         encoding: null, // treat all responses as a buffer
         retryDelay: 1000 // retry 1s after on failure

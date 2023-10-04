@@ -119,6 +119,7 @@ var walkPlaylist = function(decrypt, basedir, uri, parent, manifestIndex, playli
 		parent.content = new Buffer(parent.content.toString().replace(uri, path.relative(path.dirname(parent.file), manifest.file)));
 	}
 
+  manifest.uri = manifest.uri.replace(/\\/g, "/").replace(/%3F/g, "?").replace(/%26/g, "&").replace(".net//", ".net/").replace(".com//", ".com/").replace(".es//", ".es/");
   manifest.content = syncRequest('GET', manifest.uri).getBody();
   debug('manifest.content');
   debug(manifest.content);
